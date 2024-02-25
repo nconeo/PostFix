@@ -30,12 +30,6 @@ int main (int argc, char* argv[]) {
 
         switch (i)
         {
-            //Breakthrough () should indicate a priority. TO-DO.
-            case '(':
-            [[fallthrough]];
-            case ')':
-                break;
-            
             // Pop the stack then add two numbers together.
             case '+':
                 // Popping until there are no more values in the stack.
@@ -48,8 +42,11 @@ int main (int argc, char* argv[]) {
     
                 // Reset result so that we can continue to store the values of operations.
                 result = 0;
+
                 break;
+
             case '-':
+            
                 // For subtraction, we first need to set the result to top or else
                 // the result could be wrong giving us a negative value
                 result = stackGetAndPop(&myStack);

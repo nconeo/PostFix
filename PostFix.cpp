@@ -54,6 +54,7 @@ int main (int argc, char* argv[]) {
                     // Add to the bottom of the stack, since the top is (-).
                     result += stackGetAndPop(&myStack);
                 }
+
                 myStack.push(result);
                 
                 // Reset result so that we can continue to store the values of operations.
@@ -61,9 +62,37 @@ int main (int argc, char* argv[]) {
                 break;
 
             case '*':
+
+                // For multiplication, we first need to set the top as the result.
+                result = stackGetAndPop(&myStack);
+                // Popping until 
+                while (!myStack.empty()) {
+                    // Multiply the other number in the stack
+                    result *= stackGetAndPop(&myStack);
+                }
+
+                myStack.push(result);
+                
+                // Reset result so that we can continue to store the values of operations.
+                result = 0;
+
                 break;
 
             case '/':
+
+                // For division, we first need to set the result as the top.
+                result = stackGetAndPop(&myStack);
+                // Popping until the stack is empty.
+                while (!myStack.empty()) {
+                    // divide the bottom of the stack by the top (result).
+                    result = stackGetAndPop(&myStack) / result;
+                }
+
+                myStack.push(result);
+                
+                // Reset result so that we can continue to store the values of operations.
+                result = 0;
+                
                 break;
 
             // We reached the space between characters.

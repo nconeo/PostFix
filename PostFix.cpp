@@ -46,13 +46,13 @@ int main (int argc, char* argv[]) {
                 break;
 
             case '-':
-            
-                // For subtraction, we first need to set the result to top or else
-                // the result could be wrong giving us a negative value
-                result = stackGetAndPop(&myStack);
+
+                // For subtraction, we first need to set the top as negative.
+                result -= stackGetAndPop(&myStack);
                 // Popping until 
                 while (!myStack.empty()) {
-                    result -= stackGetAndPop(&myStack);
+                    // Add to the bottom of the stack, since the top is (-).
+                    result += stackGetAndPop(&myStack);
                 }
                 myStack.push(result);
                 
